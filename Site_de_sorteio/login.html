@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Importando o Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Importando Font Awesome para o ícone do olho -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilo adicional para personalizar a página */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar-nav .nav-link.active {
+            background-color: #555;
+            color: #fff !important;
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-form {
+            width: 100%; /* Faz o formulário ocupar toda a largura da coluna */
+            padding: 50px; /* Aumenta o padding para dar mais espaço interno */
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .login-image {
+            width: 100%; /* Faz a imagem ocupar toda a largura da coluna */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f8f8f8;
+            width: 100%;
+        }
+
+        .submit-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px; /* Ajusta o padding do botão para um tamanho melhor */
+            font-size: 16px; /* Ajusta o tamanho da fonte do botão */
+            border-radius: 5px; /* Adiciona bordas arredondadas ao botão */
+            display: block;
+            margin: 0 auto; /* Centraliza o botão */
+            width: 15%; /* Define a largura do botão como 10% */
+        }
+
+        .submit-button:hover {
+            background-color: #555;
+        }
+
+        .password-field {
+            position: relative;
+        }
+
+        .password-field input {
+            padding-right: 40px; /* Espaço para o ícone do olho */
+        }
+
+        .password-field .toggle-password {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #6c757d;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Venda de Números de Bolão</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="compra-credito.html">Compra de Crédito</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content container-fluid">
+        <div class="row align-items-center">
+            <!-- Formulário de Login -->
+            <div class="col-md-6">
+                <div class="login-form">
+                    <h2 class="text-center mb-4">Login</h2>
+                    <form action="processar-login.html" method="POST">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3 password-field">
+                            <label for="password" class="form-label">Senha:</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <i class="fa-solid fa-eye toggle-password" onclick="togglePassword()"></i>
+                        </div>
+                        <button type="submit" class="btn submit-button">Entrar</button>
+                        <div class="text-center mt-3">
+                            <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se aqui</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Imagem ao Lado Direito -->
+            <div class="col-md-6 d-none d-md-block">
+                <img src="imgs/Loetica_Bing.jfif" alt="Imagem de Login" class="login-image">
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Venda de Números de Bolão. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Importando o Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script para alternar a visibilidade da senha -->
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById('password');
+            var toggleIcon = document.querySelector('.toggle-password');
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</body>
+</html>

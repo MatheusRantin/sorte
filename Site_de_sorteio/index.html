@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda de Números de Bolão</title>
+    <!-- Importando o Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Importando Font Awesome para ícones -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Estilo adicional para personalizar a página */
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            margin-bottom: 20px;
+        }
+
+        .navbar-nav .nav-link {
+            position: relative;
+            padding-bottom: 10px; /* Espaço para a borda */
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: #28a745; /* Cor verde */
+            transition: width 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .navbar-nav .nav-link.active {
+            background-color: #555;
+            color: #fff !important;
+        }
+
+        .lottery-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .lottery-item {
+            flex: 1 1 calc(33.333% - 20px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .lottery-item img {
+            width: 100%;
+            height: auto;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .lottery-item h3 {
+            margin: 15px 0 10px;
+        }
+
+        .lottery-item p {
+            margin-bottom: 20px;
+        }
+
+        .lottery-item .select-number-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+
+        .lottery-item .select-number-button:hover {
+            background-color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f8f8f8;
+            width: 100%;
+        }
+
+        .modal-body {
+            text-align: center;
+        }
+
+        .numbers-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .numbers-container .btn {
+            width: 60px;
+            height: 60px;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .selected {
+            background-color: #28a745;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Venda de Números de Bolão</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cadastro.html">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="compra-credito.html">Compra de Crédito</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center mb-4">Venda de Números de Bolão</h1>
+        <div class="lottery-list">
+            <!-- Mega-Sena -->
+            <div class="lottery-item">
+                <img src="imgs/Mega-sena.jpg" alt="Mega-Sena">
+                <h3>Mega-Sena</h3>
+                <p>Escolha seus números para a Mega-Sena.</p>
+                <button class="select-number-button" onclick="openModal('megaSena')">Selecionar Números</button>
+            </div>
+            <!-- Lotofácil -->
+            <div class="lottery-item">
+                <img src="imgs/Lotofacil.jpg" alt="Lotofácil">
+                <h3>Lotofácil</h3>
+                <p>Escolha seus números para a Lotofácil.</p>
+                <button class="select-number-button" onclick="openModal('lotoFacil')">Selecionar Números</button>
+            </div>
+            <!-- Quina -->
+            <div class="lottery-item">
+                <img src="imgs/Quina.jpg" alt="Quina">
+                <h3>Quina</h3>
+                <p>Escolha seus números para a Quina.</p>
+                <button class="select-number-button" onclick="openModal('quina')">Selecionar Números</button>
+            </div>
+            <!-- Lotomania -->
+            <div class="lottery-item">
+                <img src="imgs/Lotomania.jpg" alt="Lotomania">
+                <h3>Lotomania</h3>
+                <p>Escolha seus números para a Lotomania.</p>
+                <button class="select-number-button" onclick="openModal('lotomania')">Selecionar Números</button>
+            </div>
+            <!-- Timemania -->
+            <div class="lottery-item">
+                <img src="timemania.jpg" alt="Timemania">
+                <h3>Timemania</h3>
+                <p>Escolha seus números para a Timemania.</p>
+                <button class="select-number-button" onclick="openModal('timemania')">Selecionar Números</button>
+            </div>
+            <!-- Dupla Sena -->
+            <div class="lottery-item">
+                <img src="imgs/dupla-sena.jpg" alt="Dupla Sena">
+                <h3>Dupla Sena</h3>
+                <p>Escolha seus números para a Dupla Sena.</p>
+                <button class="select-number-button" onclick="openModal('duplaSena')">Selecionar Números</button>
+            </div>
+            <!-- Dia de Sorte -->
+            <div class="lottery-item">
+                <img src="" alt="Dia de Sorte">
+                <h3>Dia de Sorte</h3>
+                <p>Escolha seus números para o Dia de Sorte.</p>
+                <button class="select-number-button" onclick="openModal('diaDeSorte')">Selecionar Números</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Seleção de Números -->
+    <div id="numberModal" class="modal fade" tabindex="-1" aria-labelledby="numberModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="numberModalLabel">Selecione Números</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="numbersContainer" class="numbers-container">
+                        <!-- Botões de números serão inseridos aqui via JavaScript -->
+                    </div>
+                    <form id="selectionForm">
+                        <input type="hidden" id="selectedLottery" name="selectedLottery">
+                        <button type="submit" class="btn btn-dark mt-3">Enviar Seleção</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Seleção -->
+    <div id="confirmationModal" class="modal fade" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmationModalLabel">Números Selecionados</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="confirmationNumbers">
+                    <!-- Números selecionados serão inseridos aqui via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para abrir os modais e gerar números -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openModal(lotteryType) {
+            var modal = new bootstrap.Modal(document.getElementById('numberModal'));
+            var modalTitle = document.getElementById('numberModalLabel');
+            var numbersContainer = document.getElementById('numbersContainer');
+            var numbers = generateNumbers(lotteryType);
+            document.getElementById('selectedLottery').value = lotteryType;
+            modalTitle.textContent = `Selecione Números para ${lotteryType}`;
+
+            // Limpar o conteúdo anterior
+            numbersContainer.innerHTML = '';
+
+            // Adicionar botões de números ao modal
+            numbers.forEach(number => {
+                var btn = document.createElement('button');
+                btn.className = 'btn btn-outline-success';
+                btn.textContent = number;
+                btn.addEventListener('click', () => {
+                    btn.classList.toggle('selected');
+                });
+                numbersContainer.appendChild(btn);
+            });
+
+            modal.show();
+        }
+
+        function generateNumbers(lotteryType) {
+            let numbers = [];
+            switch(lotteryType) {
+                case 'megaSena':
+                    numbers = Array.from({length: 60}, (_, i) => i + 1); // 1 a 60
+                    break;
+                case 'lotoFacil':
+                    numbers = Array.from({length: 25}, (_, i) => i + 1); // 1 a 25
+                    break;
+                case 'quina':
+                    numbers = Array.from({length: 80}, (_, i) => i + 1); // 1 a 80
+                    break;
+                case 'lotomania':
+                    numbers = Array.from({length: 100}, (_, i) => i + 1); // 1 a 100
+                    break;
+                case 'timemania':
+                    numbers = Array.from({length: 80}, (_, i) => i + 1); // 1 a 80
+                    break;
+                case 'duplaSena':
+                    numbers = Array.from({length: 50}, (_, i) => i + 1); // 1 a 50
+                    break;
+                case 'diaDeSorte':
+                    numbers = Array.from({length: 31}, (_, i) => i + 1); // 1 a 31
+                    break;
+                default:
+                    numbers = [];
+            }
+            return numbers;
+        }
+
+        // Manipulador de envio do formulário
+        document.getElementById('selectionForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio do formulário
+            var selectedNumbers = Array.from(document.querySelectorAll('.numbers-container .btn.selected'))
+                .map(btn => btn.textContent)
+                .join(', ');
+
+            // Atualiza o conteúdo do modal de confirmação
+            document.getElementById('confirmationNumbers').textContent = `Números Selecionados: ${selectedNumbers}`;
+            
+            // Fecha o modal de seleção e abre o modal de confirmação
+            var numberModal = bootstrap.Modal.getInstance(document.getElementById('numberModal'));
+            numberModal.hide();
+            var confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+            confirmationModal.show();
+        });
+    </script>
+</body>
+</html>

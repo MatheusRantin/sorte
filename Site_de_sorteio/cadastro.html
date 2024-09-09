@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .input-group-text {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">Site de Bolão</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contato.html">Contato</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="cadastro.html">Cadastro</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container form-container">
+        <h1 class="text-center mb-4">Cadastro</h1>
+        <form>
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="name" placeholder="Seu nome completo" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">E-mail</label>
+                <input type="email" class="form-control" id="email" placeholder="Seu e-mail" required>
+            </div>
+
+            <!-- Campo de Senha -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="password" placeholder="Crie uma senha" required>
+                    <span class="input-group-text" id="togglePassword"><i class="bi bi-eye-slash"></i></span>
+                </div>
+            </div>
+
+            <!-- Campo de Confirmar Senha -->
+            <div class="mb-3">
+                <label for="confirm-password" class="form-label">Confirmar Senha</label>
+                <div class="input-group">
+                    <input type="password" class="form-control" id="confirm-password" placeholder="Confirme sua senha" required>
+                    <span class="input-group-text" id="toggleConfirmPassword"><i class="bi bi-eye-slash"></i></span>
+                </div>
+            </div>
+
+            <!-- Campo para Chave PIX -->
+            <div class="mb-3">
+                <label for="pix" class="form-label">Chave PIX</label>
+                <input type="text" class="form-control" id="pix" placeholder="Informe sua chave PIX" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer bg-light text-center text-lg-start mt-5">
+        <div class="text-center p-3 bg-dark text-white">
+            &copy; 2024 Bolão. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+    <script>
+        // Função para visualizar/ocultar senha
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+        const toggleConfirmPassword = document.querySelector('#toggleConfirmPassword');
+        const confirmPassword = document.querySelector('#confirm-password');
+
+        togglePassword.addEventListener('click', function () {
+            // Toggle password visibility
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('bi-eye');
+            this.querySelector('i').classList.toggle('bi-eye-slash');
+        });
+
+        toggleConfirmPassword.addEventListener('click', function () {
+            // Toggle confirm password visibility
+            const type = confirmPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPassword.setAttribute('type', type);
+            this.querySelector('i').classList.toggle('bi-eye');
+            this.querySelector('i').classList.toggle('bi-eye-slash');
+        });
+    </script>
+</body>
+</html>

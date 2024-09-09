@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerar QR Code</title>
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.4.0/lib/qr-code-styling.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        #qrcode {
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="qrcode"></div>
+
+    <script>
+        const qrCode = new QRCodeStyling({
+            width: 300,
+            height: 300,
+            type: 'svg',
+            data: 'obrmatheusrantin@gmail.com',
+            image: '', // Você pode adicionar uma imagem de logotipo se desejar
+            dotsOptions: {
+                color: '#000',
+                // Opcional: personalizar o estilo dos pontos
+            },
+            backgroundOptions: {
+                color: '#fff',
+                // Opcional: personalizar o fundo
+            },
+            imageOptions: {
+                crossOrigin: 'anonymous',
+                margin: 20,
+            }
+        });
+
+        qrCode.append(document.getElementById('qrcode'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+    color: #333;
+    text-align: center;
+}
+
+.lottery-list {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Card Style */
+.lottery-item {
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px; /* Largura fixa do card */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.lottery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.lottery-item img.lottery-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Faz a imagem cobrir o card mantendo a proporção */
+}
+
+.lottery-item h3 {
+    margin: 15px;
+    font-size: 20px;
+    color: #333;
+}
+
+.lottery-item p {
+    margin: 0 15px 15px;
+    color: #666;
+}
+
+.select-number-button, .submit-button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    display: block;
+    width: 100%;
+    max-width: 200px; /* Largura máxima do botão */
+    margin: 0 auto 15px;
+}
+
+.select-number-button:hover, .submit-button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos dos números selecionados */
+.number-button.selected {
+    background-color: #d3d3d3; /* Cinza claro para números selecionados */
+    color: #666; /* Texto escuro */
+    cursor: not-allowed; /* Cursor indica que o botão está desativado */
+}
+
+/* Estilos do modal */
+.modal {
+    display: none; /* Esconde o modal por padrão */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo transparente com opacidade */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo branco semi-transparente */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 900px; /* Largura fixa */
+    height: 500px; /* Altura fixa */
+    border-radius: 10px; /* Bordas arredondadas */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza o conteúdo horizontalmente */
+    position: relative; /* Para o fechamento */
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.numbers-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+    gap: 10px;
+    justify-content: center;
+    max-height: calc(100% - 60px); /* Ajusta a altura máxima para caber no modal */
+    overflow-y: auto;
+    width: 100%;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+.navbar-menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.navbar-menu li {
+    position: relative; /* Necessário para posicionar a linha animada */
+    margin: 0 15px;
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: color 0.3s;
+    position: relative; /* Necessário para a animação de linha */
+    display: inline-block;
+}
+
+.navbar-menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: #4CAF50; /* Cor da linha */
+    transition: width 0.3s; /* Transição suave da largura da linha */
+}
+
+.navbar-menu a:hover::after {
+    width: 100%; /* A linha se expande para ocupar todo o link */
+}
+
+.navbar-menu a:hover {
+    color: #4CAF50; /* Cor do texto ao passar o mouse */
+}
+/* Footer Styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-links li {
+    margin: 0 10px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ffdd57; /* Exemplo de cor de destaque ao passar o mouse */
+}
